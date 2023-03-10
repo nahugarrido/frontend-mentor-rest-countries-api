@@ -11,6 +11,21 @@ const Home = () => {
   const [countries, setCountries] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [filterRegion, setFilterRegion] = useState("");
+  const [filterSearch, setFilterSearch] = useState("");
+  const [filteredCountries, setFilteredCountries] = useState([]);
+
+  console.log("region: ", filterRegion);
+  console.log("search: ", filterSearch);
+
+  const filterChangeHandler = (continent) => {
+    setFilterRegion(continent);
+  };
+
+  const searchChangeHandler = (input) => {
+    setFilterSearch(input);
+  };
+
   const fetchCountriesHandler = useCallback(async () => {
     setIsLoading(true);
     try {
@@ -23,7 +38,7 @@ const Home = () => {
       const data = await response.json();
       console.log(data);
 
-      /// en countryData.topLevelDomain puede haber un error porque es un arreglo
+      /// transform data
       const transformedCountries = data.map((countryData) => {
         return {
           id: countryData.cca3,
@@ -43,9 +58,6 @@ const Home = () => {
 
       console.log(transformedCountries);
       setCountries(transformedCountries);
-      /// transformar data
-
-      /// filtrar data
     } catch (error) {
       console.log(error);
       setError(error.message);
@@ -57,6 +69,19 @@ const Home = () => {
   useEffect(() => {
     fetchCountriesHandler();
   }, [fetchCountriesHandler]);
+
+  useEffect(() => {
+    console.log("filterRegion: ", filterRegion);
+    const filtered = countries.filter((country) => {
+      return (
+        (country.region === filterRegion || filterRegion == "") &&
+        country.name.toLowerCase().startsWith(filterSearch.toLowerCase())
+      );
+    });
+    console.log("filtro: ", filterSearch.toLowerCase());
+    console.log("filtered: ", filtered);
+    setFilteredCountries(filtered);
+  }, [filterRegion, filterSearch, countries]);
 
   return (
     <div className={classes.container}>
@@ -70,8 +95,14 @@ const Home = () => {
           <p>{error}</p>
         </div>
       )}
-      {!error && !isLoading && <Search />}
-      {countries.map((country) => (
+      {!error && !isLoading && (
+        <Search
+          onChangeFilter={filterChangeHandler}
+          onChangeSearch={searchChangeHandler}
+          selected={filterRegion}
+        />
+      )}
+      {filteredCountries.map((country) => (
         <Card key={country.id} country={country} />
       ))}
     </div>

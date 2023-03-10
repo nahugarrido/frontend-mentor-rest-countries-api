@@ -48,3 +48,13 @@
   margin: 0;
   padding: 0;
 }
+
+body>h1,
+body>h2,
+body>h3,
+body>h4,
+body>span,
+body>p {
+  transition: color 0.5s ease;
+  /* Otras propiedades de estilo de texto aquí */
+}
