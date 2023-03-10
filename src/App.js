@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import Card from "./components/card";
+import Header from "./components/Header/Header";
+import Home from "./views/Home";
 import "./App.css";
 
 function App() {
@@ -15,8 +16,8 @@ function App() {
 
   return (
     <div className={`size App-${mode}`}>
-      <button onClick={changeMode}>Cambiar modo</button>
-      <Card />
+      <Header onClick={changeMode} isDark={mode} />
+      <Home />
     </div>
   );
 }
