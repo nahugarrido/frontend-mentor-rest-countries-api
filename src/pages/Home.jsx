@@ -7,16 +7,13 @@ import classes from "./Home.module.css";
 
 /* const response = await fetch("https://restcountries.com/v3.1/all"); */
 
-const Home = () => {
+const HomePage = () => {
   const [countries, setCountries] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [filterRegion, setFilterRegion] = useState("");
   const [filterSearch, setFilterSearch] = useState("");
   const [filteredCountries, setFilteredCountries] = useState([]);
-
-  console.log("region: ", filterRegion);
-  console.log("search: ", filterSearch);
 
   const filterChangeHandler = (continent) => {
     setFilterRegion(continent);
@@ -70,16 +67,14 @@ const Home = () => {
     fetchCountriesHandler();
   }, [fetchCountriesHandler]);
 
+  /// filter data
   useEffect(() => {
-    console.log("filterRegion: ", filterRegion);
     const filtered = countries.filter((country) => {
       return (
-        (country.region === filterRegion || filterRegion == "") &&
+        (country.region === filterRegion || filterRegion === "") &&
         country.name.toLowerCase().startsWith(filterSearch.toLowerCase())
       );
     });
-    console.log("filtro: ", filterSearch.toLowerCase());
-    console.log("filtered: ", filtered);
     setFilteredCountries(filtered);
   }, [filterRegion, filterSearch, countries]);
 
@@ -109,4 +104,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;
