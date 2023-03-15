@@ -1,0 +1,50 @@
+.top-container {
+  display: flex;
+  align-items: center;
+  height: 18vh;
+}
+
+.back {
+  border: none;
+  background-color: var(--elements-color);
+  box-shadow: 5px 5px 16px var(--box-shadow);
+  border-radius: 3px;
+  color: var(--text-color);
+  font-family: "Nunito Sans", sans-serif;
+  padding: 8px 30px;
+  transition: transform 0.1s ease-in-out;
+}
+
+.back .icon {
+  margin: 0 12px 0 0;
+}
+
+.back:hover {
+  cursor: pointer;
+  transform: scale(1.02);
+  transition: transform 0.1s ease-in-out;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 60vh;
+  margin: 0 8%;
+}
+
+.img-container {
+  width: 100%;
+  max-height: 30%;
+}
+
+.img-inside {
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  .img-container {
+  }
+}
