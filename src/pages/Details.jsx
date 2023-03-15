@@ -11,12 +11,7 @@ const DetailsPage = (props) => {
       alt: "The flag of Colombia is composed of three horizontal bands of yellow, blue and red, with the yellow band twice the height of the other two bands.",
     },
     name: "Colombia",
-    nativeName: {
-      spa: {
-        official: "República de Colombia",
-        common: "Colombia",
-      },
-    },
+    nativeName: "República de Colombia",
     population: 50882884,
     region: "Americas",
     continents: "Americas",
@@ -33,6 +28,11 @@ const DetailsPage = (props) => {
     },
     borders: ["BRA", "ECU", "PAN", "PER", "VEN"],
   };
+
+  const currencyNames = Object.values(country.currencies).map(
+    (currency) => currency.name
+  );
+  console.log(currencyNames);
   return (
     <>
       <div className={classes["container"]}>
@@ -52,7 +52,7 @@ const DetailsPage = (props) => {
         <div className={classes.content}>
           <h2>{country.name}</h2>
           <h5>
-            Native Name: <span>{country.nativeName.spa.official}</span>
+            Native Name: <span>{country.nativeName}</span>
           </h5>
           <h5>
             Population: <span>{country.population}</span>
@@ -61,6 +61,7 @@ const DetailsPage = (props) => {
             Region: <span>{country.continents}</span>
           </h5>
           <h5>
+            {/* this is wrong i guess */}
             Sub Region: <span>{country.region}</span>
           </h5>
           <h5>
@@ -70,11 +71,12 @@ const DetailsPage = (props) => {
             Top Level Domain: <span>{country.domain}</span>
           </h5>
           <h5>
-            Currencies: <span>{country.currencies[0].name}</span>
+            Currencies:
+            <span> </span>
           </h5>
-          <h5>
+          {/* <h5>
             Languages: <span>{country.languages[0].name}</span>
-          </h5>
+          </h5> */}
         </div>
       </div>
     </>

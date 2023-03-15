@@ -7,6 +7,10 @@ import classes from "./Home.module.css";
 
 /* const response = await fetch("https://restcountries.com/v3.1/all"); */
 
+/* Object.values(country.currencies).map(
+  (currency) => currency.name
+); */
+
 const HomePage = () => {
   const [countries, setCountries] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
