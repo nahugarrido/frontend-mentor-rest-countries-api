@@ -22,6 +22,10 @@ const DetailsPage = (props) => {
         name: "Colombian peso",
         symbol: "$",
       },
+      ARG: {
+        name: "Peso argentino anashe",
+        symbol: "$",
+      },
     },
     languages: {
       spa: "Spanish",
@@ -32,7 +36,14 @@ const DetailsPage = (props) => {
   const currencyNames = Object.values(country.currencies).map(
     (currency) => currency.name
   );
+
+  const languages = Object.values(country.languages).map(
+    (language) => language
+  );
+
   console.log(currencyNames);
+  console.log(languages);
+
   return (
     <>
       <div className={classes["container"]}>
@@ -61,7 +72,6 @@ const DetailsPage = (props) => {
             Region: <span>{country.continents}</span>
           </h5>
           <h5>
-            {/* this is wrong i guess */}
             Sub Region: <span>{country.region}</span>
           </h5>
           <h5>
@@ -72,11 +82,11 @@ const DetailsPage = (props) => {
           </h5>
           <h5>
             Currencies:
-            <span> </span>
+            <span> {currencyNames.map((curr) => curr + ", ")}</span>
           </h5>
-          {/* <h5>
-            Languages: <span>{country.languages[0].name}</span>
-          </h5> */}
+          <h5>
+            Languages: <span>{languages.map((language) => language)}</span>
+          </h5>
         </div>
       </div>
     </>
